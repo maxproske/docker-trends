@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const PopularSearches = ({ popularSearches: searches }: { popularSearches: string[] }) => {
-  searches = ['alpine-vs-busybox', 'ubuntu-vs-debian', 'mysql-vs-postgres-vs-mariadb', 'nginx-vs-httpd', 'node']
+  searches = ['busybox-vs-alpine-vs-ubuntu-vs-debian', 'postgres-vs-mysql-vs-mariadb', 'node-vs-openjdk-vs-php', 'nginx-vs-httpd', 'wordpress-vs-ghost-drupal']
 
   const renderSearchesList = () =>
     searches.map((search) => {

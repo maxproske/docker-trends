@@ -51,7 +51,7 @@ const MyApp = ({ Component, pageProps }) => {
       scriptProps={{
         async: true,
         defer: true,
-        src: `https://pl-proxy.uidotdev.workers.dev/js/script.js`,
+        src: `dockertrends.com`,
       }}
     >
       <QueryClientProvider client={queryClient}>

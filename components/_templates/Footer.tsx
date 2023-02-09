@@ -9,7 +9,7 @@ const Footer = () => (
             <a target="_blank" href="https://mproske.com">
               Max Proske
             </a>{' '}
-            and is inspired by{' '}
+            and inspired by{' '}
             <a target="_blank" rel="noopener noreferrer" href="https://www.npmtrends.com">
               npmtrends.com
             </a>

@@ -5,13 +5,13 @@ const Header = () => (
     <div className="container">
       <Link href="/[[...packets]]" as="/">
         <a className="site-logo">
-          {/* <img
-            width={35}
-            height={35}
+          <img
+            width={96}
+            height={96}
             className="site-logo--img"
-            alt="NPM Trends Logo"
-            src="/images/logos/npm_trends_logo.png"
-          /> */}
+            alt="Docker Trends Logo"
+            src="/img/favicon.png"
+          />
           <span className="site-logo--name">Docker Trends</span>
         </a>
       </Link>

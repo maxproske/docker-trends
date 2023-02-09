@@ -8,7 +8,7 @@ dayjs.extend(duration)
 class ImagePulls {
   static fetchDownloads = async (packageName, startDate, endDate) => {
   
-    const data = await Fetch.getJSON(`http://localhost:3000/api/docker?name=${packageName}`);
+    const data = await Fetch.getJSON(`/api/docker?name=${packageName}`);
 
     return {
       package: packageName,

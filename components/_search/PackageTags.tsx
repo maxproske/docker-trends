@@ -88,7 +88,7 @@ const PackageTags = ({ packets, colors }: Props) => {
     <div className="package-search--tag-container">
       <ul className="package-search-tags list-unstyled">
         {renderPackageTags()}
-        {renderRelatedPackages()}
+        {/* {renderRelatedPackages()} */}
       </ul>
     </div>
   );

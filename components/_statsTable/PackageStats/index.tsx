@@ -56,7 +56,7 @@ const columns = [
   {
     heading: 'Updated',
     tooltip:
-      'Publish date for the version tagged "latest". This may differ from the "Last publish" date seen on the NPM website because that includes all version tags (experimental, next, alpha, etc.)',
+      'Publish date for the version tagged "latest". This may differ from the "Last publish" date seen on the Docker Hub website because that includes all version tags (experimental, next, alpha, etc.)',
     renderer: (packet: IPackage) =>
       packet.versionDate ? dayjs(packet.versionDate).fromNow() : <i aria-hidden className="icon icon-dash" />,
   },
@@ -66,7 +66,7 @@ const columns = [
     renderer: (packet: IPackage) =>
       packet.createdDate ? dayjs(packet.createdDate).fromNow() : <i aria-hidden className="icon icon-dash" />,
   },
-  { heading: 'Size', renderer: (packet: IPackage) => <BundlephobiaRenderer packet={packet} /> },
+  // { heading: 'Size', renderer: (packet: IPackage) => <BundlephobiaRenderer packet={packet} /> },
 ];
 
 type Props = {
@@ -93,7 +93,7 @@ const PackageStats = ({ packets }: Props) => {
 
   return (
     <div className="package-stats">
-      <h2>Stats</h2>
+      <h2>Stats <span style={{fontSize: 10}}>(Coming Soon)</span></h2>
       <div className="table-container">
         <table className="table">
           <thead>

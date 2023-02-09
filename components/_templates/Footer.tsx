@@ -6,21 +6,17 @@ const Footer = () => (
           <h3>About</h3>
           <p>
             This site was created by{' '}
-            <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/johnmpotter">
-              John Potter
+            <a target="_blank" href="https://mproske.com">
+              Max Proske
             </a>{' '}
-            and is maintained by{' '}
-            <a target="_blank" rel="noopener noreferrer" href="https://ui.dev">
-              uidotdev
+            and is inspired by{' '}
+            <a target="_blank" rel="noopener noreferrer" href="https://www.npmtrends.com">
+              npmtrends.com
             </a>
-            . If you find any bugs or have a feature request, please open an issue on{' '}
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/uidotdev/npm-trends">
-              github
-            </a>
-            !
+            .
           </p>
 
-          <h3>More</h3>
+          {/* <h3>More</h3>
           <ul className="list-unstyled">
             <li>
               <a target="_blank" rel="noopener noreferrer" href="https://ui.dev">
@@ -52,7 +48,7 @@ const Footer = () => (
                 React Newsletter
               </a>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
     </div>

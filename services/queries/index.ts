@@ -2,7 +2,8 @@ import { useQuery, useQueries } from 'react-query';
 import Fetch from 'services/Fetch';
 import Package from 'services/Package';
 import IPackage from 'types/IPackage';
-import PackageDownloads from 'services/PackageDownloads';
+// import PackageDownloads from 'services/PackageDownloads';
+import ImagePulls from 'services/ImagePulls';
 
 export function useRelatedPackages(searchQueryParams: string) {
   return useQuery(
@@ -80,10 +81,21 @@ export function useSearchPackages(searchQuery: string) {
   );
 }
 
-export function usePackageDownloads(packets: IPackage[], startDate: string, endDate: string, initialData = []) {
+// export function usePackageDownloads(packets: IPackage[], startDate: string, endDate: string, initialData = []) {
+//   return useQuery(
+//     ['package-downloads', { startDate, endDate, packets }],
+//     () => Promise.all(packets.map(({ name }) => PackageDownloads.fetchDownloads(name, startDate, endDate))),
+//     {
+//       initialData,
+//       keepPreviousData: true,
+//     },
+//   );
+// }
+
+export function useImagePulls(packets: IPackage[], startDate: string, endDate: string, initialData = []) {
   return useQuery(
     ['package-downloads', { startDate, endDate, packets }],
-    () => Promise.all(packets.map(({ name }) => PackageDownloads.fetchDownloads(name, startDate, endDate))),
+    () => Promise.all(packets.map(({ name }) => ImagePulls.fetchDownloads(name, startDate, endDate))),
     {
       initialData,
       keepPreviousData: true,

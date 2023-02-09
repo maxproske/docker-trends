@@ -33,7 +33,7 @@ const EmailSignup = () => {
 
   return (
     <div className="email-signup">
-      <div className="card-content">
+      {/* <div className="card-content">
         {subscribed ? (
           <div className="has-text-centered has-text-weight-semibold">
             You are subscribed&nbsp;&nbsp;
@@ -79,7 +79,7 @@ const EmailSignup = () => {
             </p>
           </>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

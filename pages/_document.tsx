@@ -10,14 +10,14 @@ export default class MyDocument extends Document {
         <Head>
           <script async src="https://use.fortawesome.com/978e158e.js" />
           <link rel="shortcut icon" href="/favicon.ico" />
-          <noscript>
+          {/* <noscript>
             <img
               height="1"
               width="1"
               style={{ display: 'none' }}
               src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
             />
-          </noscript>
+          </noscript> */}
         </Head>
         <body>
           <Main />

@@ -41,6 +41,35 @@ class Package {
   };
 
   static fetchPackage = async (packageName: string): Promise<IPackage> => {
+    
+    // Tmp
+    return {
+      id: packageName,
+      name: packageName,
+      description: '',
+      version: '',
+      versionDate: '',
+      readme: '',
+      repository: {
+        type: '',
+        url: '',
+      },
+      github: {
+        starsCount: null,
+        forksCount: null,
+        issuesCount: null,
+        openIssuesCount: null
+      },
+      links: {
+        npm: '',
+        homepage: '',
+      },
+      downloads: {
+        weekly: 0,
+      }
+    }
+
+
     const [weeklyDownloads, registry] = await Promise.all([
       PackageDownloads.fetchPoint(packageName, 'last-week'),
       Package.fetchAndFormatNpmRegistryData(packageName),

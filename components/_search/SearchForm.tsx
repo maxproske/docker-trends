@@ -37,7 +37,7 @@ const SearchForm = ({ onSearch }: Props) => {
           id="search_form_input"
           selectOnClick
           value={value}
-          placeholder="Enter an npm package..."
+          placeholder="Enter a docker image..."
           className="autocomplete"
           onChange={(e) => setValue(e.target.value)}
         />

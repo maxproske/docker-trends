@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
-import { usePackageDownloads } from 'services/queries';
+import { useImagePulls } from 'services/queries';
 import TrendGraph from './TrendGraph';
 
 export const djsToStartDate = (djs) => djs.startOf('week').format('YYYY-MM-DD');
@@ -16,7 +16,7 @@ const TrendGraphBox = ({ packets, colors, packageDownloadData }) => {
   const [startDate, setStartDate] = useState(djsToStartDate(dayjs().subtract(12, 'months')));
   const endDate = dayjs().subtract(1, 'week').endOf('week').format('YYYY-MM-DD');
 
-  const { data: graphStats } = usePackageDownloads(packets, startDate, endDate, packageDownloadData);
+  const { data: graphStats } = useImagePulls(packets, startDate, endDate, packageDownloadData);
 
   const handlePeriodChange = (e) => {
     setStartDate(e.target.value);
@@ -39,12 +39,12 @@ const TrendGraphBox = ({ packets, colors, packageDownloadData }) => {
     ));
     return (
       <h2 className="chart-heading">
-        Downloads <span className="text--light">in past</span>
-        <span className="select-container">
+        Weekly pulls <span className="text--light">in past 2 months <span style={{fontSize: 10}}>(Custom dates coming soon)</span></span>
+        {/* <span className="select-container">
           <select className="chart-heading-select" value={startDate} onChange={handlePeriodChange}>
             {selectOptions}
           </select>
-        </span>
+        </span> */}
       </h2>
     );
   };

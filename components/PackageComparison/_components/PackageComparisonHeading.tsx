@@ -9,7 +9,7 @@ type Props = {
 
 const PackageComparisonHeading = ({ packetNames, packets }: Props) => {
   const pageHeading = () => {
-    if (!packetNames.length) return <span className="text--bold">Compare package download counts over time</span>;
+    if (!packetNames.length) return <span className="text--bold">Compare image pull counts over time</span>;
     return packetNames.map(
       (name, i) => (
         <span key={name}>

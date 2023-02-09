@@ -13,8 +13,9 @@ import Layout from 'components/_templates/Layout';
 import PackageComparison from 'components/PackageComparison';
 import Fetch from 'services/Fetch';
 import { usePackagesData } from 'services/queries';
-import PackageDownloads from 'services/PackageDownloads';
+// import PackageDownloads from 'services/PackageDownloads';
 import { djsToStartDate } from 'components/_chart/TrendGraphBox';
+import ImagePulls from 'services/ImagePulls'
 
 const fetchPageData = async (packets) => {
   if (!packets.length) {
@@ -51,34 +52,38 @@ function generateDescription(packets: IPackage[]) {
 
 export const getServerSideProps = hasNavigationCSR(async ({ query, res, req }) => {
   const packetNames = getPacketNamesFromQuery(query);
-  if (req.url !== getCanonical(packetNames)) {
-    return {
-      redirect: {
-        permanent: true,
-        destination: getCanonical(packetNames),
-      },
-    };
-  }
+
+  // TODO: Copy same functionality for Docker
+  // if (req.url !== getCanonical(packetNames)) {
+  //   return {
+  //     redirect: {
+  //       permanent: true,
+  //       destination: getCanonical(packetNames),
+  //     },
+  //   };
+  // }
 
   const startDate = djsToStartDate(dayjs().subtract(12, 'months'));
   const endDate = dayjs().subtract(1, 'week').endOf('week').format('YYYY-MM-DD');
 
+
   const [pageData, popularSearches, packageDownloadData] = await Promise.all([
     fetchPageData(packetNames),
     Fetch.getJSON('/s/searches?limit=10'),
-    Promise.all(packetNames.map((name) => PackageDownloads.fetchDownloads(name, startDate, endDate))),
+    Promise.all(packetNames.map((name) => ImagePulls.fetchDownloads(name, startDate, endDate))),
   ]);
 
   // If error with any packages, remove errored packages from url
   if (pageData.packets && packetNames.length !== pageData.packets.length) {
     const packetsUrlParam = pageData.packets.map((p) => p.name).join('-vs-');
 
-    return {
-      redirect: {
-        permanent: false,
-        destination: `/${packetsUrlParam}`,
-      },
-    };
+    // TODO: Copy same functionality for Docker
+    // return {
+    //   redirect: {
+    //     permanent: false,
+    //     destination: `/${packetsUrlParam}`,
+    //   },
+    // };
   }
 
   res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
@@ -107,13 +112,13 @@ const Packets = ({ initialData, popularSearches: initialSearches, packageDownloa
   }, [packets]);
 
   const canonical = packetNames ? getCanonical(packetNames) : undefined;
-  let pageTitle = 'npm trends: Compare NPM package downloads';
+  let pageTitle = 'Docker Trends: Compare Docker image pulls';
   let pageDescription =
-    'Which NPM package should you use? Compare packages download stats, bundle sizes, github stars and more. Spot trends, pick the winner.';
+    'Which Docker image should you use? Compare image pull stats, bundle sizes, github stars and more. Spot trends, pick the winner.';
 
   if (packetNames.length) {
     const packetsString = searchPathToDisplayString(packetNames);
-    pageTitle = `${packetsString} | npm trends`;
+    pageTitle = `${packetsString} | Docker Trends`;
     pageDescription = generateDescription(packets);
   }
 

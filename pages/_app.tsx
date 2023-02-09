@@ -7,6 +7,8 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import Script from 'next/script';
 import AppHead from 'components/_templates/AppHead';
 import { pageview, FB_PIXEL_ID } from '../utils/pixel';
+import Head from 'next/head'
+import { pageview as gtagPageview } from '../utils/pixel';
 
 import 'normalize.css/normalize.css';
 import 'reset-css/reset.css';
@@ -41,13 +43,25 @@ const MyApp = ({ Component, pageProps }) => {
     return () => router.events.off('routeChangeComplete', handleRouteChange);
   }, [router.events]);
 
-  const pageTitle = 'NPM Trends: Compare NPM package downloads';
+  // Google Analytics
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      // @ts-ignore
+      gtagPageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
+  const pageTitle = 'Docker Trends: Compare Docker image downloads';
   const pageDescription =
-    'Which NPM package should you use? Compare NPM package download stats over time. Spot trends, pick the winner!';
+    'Which Docker image should you use? Compare Docker image pull stats over time. Spot trends, pick the winner!';
 
   return (
     <PlausibleProvider
-      domain="npmtrends.com"
+      domain="dockertrends.com"
       scriptProps={{
         async: true,
         defer: true,
@@ -57,7 +71,27 @@ const MyApp = ({ Component, pageProps }) => {
       <QueryClientProvider client={queryClient}>
         <ToastContainer />
         <AppHead title={pageTitle} description={pageDescription} />
-        <Script
+
+        <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-16V3PKPM5L', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+      </Head>
+      {/* Global Site Tag (gtag.js) - Google Analytics */}
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-16V3PKPM5L`}
+      />
+        {/* <Script
           id="fb-pixel"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -73,7 +107,7 @@ const MyApp = ({ Component, pageProps }) => {
             fbq('init', ${FB_PIXEL_ID});
           `,
           }}
-        />
+        /> */}
         <Component {...pageProps} />
       </QueryClientProvider>
     </PlausibleProvider>

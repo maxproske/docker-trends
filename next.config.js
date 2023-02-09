@@ -30,15 +30,15 @@ module.exports = withBundleAnalyzer({
   images: {
     domains: ['flat.badgen.net'],
   },
-  async headers() {
-    return [
-      {
-        // Apply these headers to all routes in your application.
-        source: '/:path*',
-        headers: securityHeaders,
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       // Apply these headers to all routes in your application.
+  //       source: '/:path*',
+  //       headers: securityHeaders,
+  //     },
+  //   ];
+  // },
   async rewrites() {
     return {
       beforeFiles: [

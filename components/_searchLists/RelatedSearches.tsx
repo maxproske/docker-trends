@@ -57,8 +57,8 @@ const RelatedSearches = ({ packetNames }: Props) => {
 
   return (
     <div className="suggetions--box">
-      <h2>Related Searches</h2>
-      <ul className="suggestions-list list-unstyled">{renderSearchesList()}</ul>
+      {/* <h2>Related Searches</h2>
+      <ul className="suggestions-list list-unstyled">{renderSearchesList()}</ul> */}
     </div>
   );
 };

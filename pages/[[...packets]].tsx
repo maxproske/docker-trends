@@ -114,12 +114,12 @@ const Packets = ({ initialData, popularSearches: initialSearches, packageDownloa
   const canonical = packetNames ? getCanonical(packetNames) : undefined;
   let pageTitle = 'Docker Trends: Compare Docker image pulls';
   let pageDescription =
-    'Which Docker image should you use? Compare image pull stats, bundle sizes, github stars and more. Spot trends, pick the winner.';
+    'Which Docker image should you choose? Compare weekly pull stats and pick the winner.';
 
   if (packetNames.length) {
     const packetsString = searchPathToDisplayString(packetNames);
     pageTitle = `${packetsString} | Docker Trends`;
-    pageDescription = generateDescription(packets);
+    // pageDescription = generateDescription(packets);
   }
 
   return (

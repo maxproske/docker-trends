@@ -6,9 +6,8 @@ import PlausibleProvider from 'next-plausible';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import Script from 'next/script';
 import AppHead from 'components/_templates/AppHead';
-import { pageview, FB_PIXEL_ID } from '../utils/pixel';
 import Head from 'next/head'
-import { pageview as gtagPageview } from '../utils/pixel';
+import { pageview } from '../utils/gtag';
 
 import 'normalize.css/normalize.css';
 import 'reset-css/reset.css';
@@ -31,23 +30,10 @@ export const queryClient = new QueryClient({
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter();
 
-  useEffect(() => {
-    pageview();
-
-    const handleRouteChange = () => {
-      pageview();
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-
-    return () => router.events.off('routeChangeComplete', handleRouteChange);
-  }, [router.events]);
-
   // Google Analytics
   useEffect(() => {
     const handleRouteChange = (url) => {
-      // @ts-ignore
-      gtagPageview(url)
+      pageview(url)
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
